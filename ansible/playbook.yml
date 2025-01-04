@@ -1,0 +1,23 @@
+- name: Configurar Servidores OMS
+  hosts: all
+  become: true  # Eleva os privilégios para root
+  tasks:
+    - name: Atualizar os pacotes do sistema
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Instalar Node.js
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Instalar MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Criar base de dados 'orders_db'
+      mysql_db:
+        name: orders_db
+        state: present

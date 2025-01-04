@@ -1,0 +1,2 @@
+terraform init   # Inicia o Terraform
+terraform apply  # Aplica a configuração

@@ -1,0 +1,11 @@
+# Autenticação no Azure
+az login
+
+# Criar Grupo de Recursos
+az group create --name ShoppingOrderGroup --location eastus
+
+# Criar Namespace do Event Hub
+az eventhubs namespace create --name ShoppingOrderNamespace --resource-group ShoppingOrderGroup --location eastus
+
+# Criar Event Hub
+az eventhubs eventhub create --name ShoppingOrderEventHub --namespace-name ShoppingOrderNamespace --message-retention 7 --partition-count 2

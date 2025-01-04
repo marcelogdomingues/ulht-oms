@@ -1,0 +1,84 @@
+az login
+/opt/homebrew/Cellar/azure-cli/2.67.0_1/libexec/lib/python3.12/site-packages/azure/batch/models/_models_py3.py:4839: SyntaxWarning: invalid escape sequence '\s'
+  """A Job Preparation Task to run before any Tasks of the Job on any given
+A web browser has been opened at https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize. Please continue the login in the web browser. If no web browser is available or if the web browser fails to open, use device code flow with `az login --use-device-code`.
+
+Retrieving tenants and subscriptions for the selection...
+
+[Tenant and subscription selection]
+
+No     Subscription name     Subscription ID                       Tenant
+-----  --------------------  ------------------------------------  ---------------
+[1] *  Azure subscription 1  c207c1ed-eb15-4b2e-8d75-ea277eba64aa  Ensino Lusófona
+
+The default is marked with an *; the default tenant is 'Ensino Lusófona' and subscription is 'Azure subscription 1' (c207c1ed-eb15-4b2e-8d75-ea277eba64aa).
+
+Select a subscription and tenant (Type a number or Enter for no changes): 
+
+Tenant: Ensino Lusófona
+Subscription: Azure subscription 1 (c207c1ed-eb15-4b2e-8d75-ea277eba64aa)
+
+[Announcements]
+With the new Azure CLI login experience, you can select the subscription you want to use more easily. Learn more about it and its configuration at https://go.microsoft.com/fwlink/?linkid=2271236
+
+If you encounter any problem, please open an issue at https://aka.ms/azclibug
+
+[Warning] The login output has been updated. Please be aware that it no longer displays the full list of available subscriptions by default.
+
+
+
+az group create --name ShoppingOrderGroup --location eastus
+
+{
+  "id": "/subscriptions/c207c1ed-eb15-4b2e-8d75-ea277eba64aa/resourceGroups/ShoppingOrderGroup",
+  "location": "eastus",
+  "managedBy": null,
+  "name": "ShoppingOrderGroup",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+
+
+az eventhubs namespace create --name ShoppingOrderNamespace --resource-group ShoppingOrderGroup --location eastus
+
+Resource provider 'Microsoft.EventHub' used by this operation is not registered. We are registering for you.
+Registration succeeded.
+{
+  "createdAt": "2025-01-03T18:36:23.7795393Z",
+  "disableLocalAuth": false,
+  "geoDataReplication": {
+    "locations": [
+      {
+        "locationName": "eastus",
+        "replicaState": "Ready",
+        "roleType": "Primary"
+      }
+    ],
+    "maxReplicationLagDurationInSeconds": 0
+  },
+  "id": "/subscriptions/c207c1ed-eb15-4b2e-8d75-ea277eba64aa/resourceGroups/ShoppingOrderGroup/providers/Microsoft.EventHub/namespaces/ShoppingOrderNamespace",
+  "isAutoInflateEnabled": false,
+  "kafkaEnabled": true,
+  "location": "eastus",
+  "maximumThroughputUnits": 0,
+  "metricId": "c207c1ed-eb15-4b2e-8d75-ea277eba64aa:shoppingordernamespace",
+  "minimumTlsVersion": "1.2",
+  "name": "ShoppingOrderNamespace",
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "ShoppingOrderGroup",
+  "serviceBusEndpoint": "https://ShoppingOrderNamespace.servicebus.windows.net:443/",
+  "sku": {
+    "capacity": 1,
+    "name": "Standard",
+    "tier": "Standard"
+  },
+  "status": "Active",
+  "tags": {},
+  "type": "Microsoft.EventHub/Namespaces",
+  "updatedAt": "2025-01-03T18:36:46.9408883Z",
+  "zoneRedundant": false
+}
