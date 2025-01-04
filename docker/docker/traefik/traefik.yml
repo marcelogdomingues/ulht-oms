@@ -1,0 +1,17 @@
+api:
+  dashboard: true # Habilitar o Dashboard
+
+log:
+  level: DEBUG # Alterar para DEBUG para mais detalhes
+
+entryPoints:
+  web:
+    address: ":80" # Entrada HTTP
+
+  traefik:
+    address: ":8080" # Entrada para o Dashboard
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false # Apenas serviços com labels explícitos serão expostos
