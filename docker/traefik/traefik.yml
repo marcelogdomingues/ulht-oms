@@ -7,15 +7,11 @@ log:
 
 accessLog: {}
 
-#tracing:
-#  elastic: {}
-
 metrics:
   prometheus: {}
 
 ping: {}
 
-# API and dashboard configuration
 api:
   dashboard: true
   insecure: true
@@ -23,30 +19,13 @@ api:
 entryPoints:
   web:
     address: ":80"
-    http:
-      # Remove the redirection rule
-      # redirections:
-      #   entryPoint:
-      #     to: websecure
-      #     scheme: https
-      #     rule: "HostRegexp(`{host:.+}`) && !Host(`192.168.1.238`)"
   websecure:
     address: ":443"
 
-  traefik:
-    address: ":8080"
-
-# Docker configuration backend
 providers:
   docker:
-    defaultRule: 'Host(`{{ if index .Labels "com.docker.compose.service" }}{{ index .Labels "com.docker.compose.service" }}.ulhtoms.com{{ else }}{{ trimPrefix `/` .Name }}.ulhtoms.com{{ end }}`)'
-    endpoint: unix:///var/run/docker.sock
-    # Para Windows, descomente a linha abaixo e comente a linha acima
-    # endpoint: "npipe:////./pipe/docker_engine"
-    watch: true
-    exposedByDefault: true
-    
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
   file:
     directory: "/etc/traefik/dynamic"
     watch: true
-

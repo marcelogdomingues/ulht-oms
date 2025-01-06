@@ -1,7 +1,7 @@
 http:
   routers:
     ulhtoms:
-      rule: "Host(`ulhtoms.com`)"
+      rule: "Host(`www.ulhtoms.com`)"
       entryPoints: web
       service: ulhtoms-cluster
 
@@ -9,6 +9,6 @@ http:
     ulhtoms-cluster:
       loadBalancer:
         servers:
-          - url: "http://web1.example.com"
-          - url: "http://web2.example.com"
-          - url: "http://web3.example.com"
+          - url: "http://192.168.1.238:81"
+          - url: "http://192.168.1.238:82"
+          - url: "http://192.168.1.238:83"
