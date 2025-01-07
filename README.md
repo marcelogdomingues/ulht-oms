@@ -39,36 +39,48 @@ ULHT-OMS/
 ├── ansible/
 │   ├── inventory.ini
 │   ├── playbook.yml
-├── azure/
-│   ├── azure.logs
-│   ├── commands.txt
-├── docker/
-│   ├── app/
-│   ├── docker/
-│   │   ├── traefik/
-│   │   │   ├── traefik.yml
+├── Cloud/
+│   ├── terraform/
+│   │   ├── azure/
+│   │   │   ├── azure.logs
+│   │   │   ├── commands.txt
+│   │   ├── commands.txt
+│   │   ├── main.tf
+│   │   ├── terraform.log
+│   │   ├── terraform.tfstate
+│   │   ├── terraform_plan.log
+│   │   ├── tfplan.out
+├── Network/
 │   ├── docker-compose.yml
 │   ├── letsencrypt/
 │   │   ├── acme.json
+│   ├── nginx/
+│   │   ├── conf/
+│   │   │   ├── web1.conf
+│   │   │   ├── web2.conf
+│   │   │   ├── web3.conf
+│   │   ├── html/
+│   │   │   ├── index1.html
+│   │   │   ├── index2.html
+│   │   │   ├── index3.html
+│   ├── selfsigned.crt
+│   ├── selfsigned.key
 │   ├── traefik/
+│   │   ├── dynamic/
+│   │   │   ├── dynamic.yml
 │   │   ├── traefik.yml
-├── sql/
-│   ├── orders_db.sql
-├── terraform/
-│   ├── .terraform/
-│   │   ├── providers/
-│   │   │   ├── registry.terraform.io/
-│   │   │   │   ├── hashicorp/
-│   │   │   │   │   ├── azurerm/
-│   │   │   │   │   │   ├── 4.14.0/
-│   │   │   │   │   │   │   ├── darwin_arm64/
-│   │   │   │   │   │   │   │   ├── LICENSE.txt
-│   │   │   │   │   │   │   │   ├── terraform-provider-azurerm_v4.14.0_x5
-│   ├── .terraform.lock.hcl
-│   ├── commands.txt
-│   ├── main.tf
-│   ├── terraform.tfstate
+├── Process/
+│   ├── db-init/
+│   │   ├── init.sql
+│   ├── Dockerfile
+│   ├── scripts/
+│   │   ├── package.json
+│   │   ├── recieve-azure.js
+│   │   ├── send-azure.js
+│   │   ├── store-events.js
 ├── README.md
+├── run_services.sh
+
 ```
 
 ## Configuração do Projeto
