@@ -9,6 +9,6 @@ http:
     ulhtoms-cluster:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.238:81"
-          - url: "http://192.168.1.238:82"
-          - url: "http://192.168.1.238:83"
+          - url: "http://172.19.0.2:80"
+          - url: "http://172.19.0.5:80"
+          - url: "http://172.19.0.3:80"
