@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: orders_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: orders_db
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  nodejs:
+    build: .
+    container_name: node_scripts
+    depends_on:
+      - mysql
+    working_dir: /app/scripts
+    volumes:
+      - ./scripts:/app/scripts
+    networks:
+      - app-network
+    entrypoint: ["sh", "-c"]
+    command: >
+      "sleep 20 &&
+      node send-azure.js &&
+      node store-events.js"
+
+networks:
+  app-network:
+    driver: bridge

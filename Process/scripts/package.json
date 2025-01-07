@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@azure/event-hubs": "^5.12.2",
+    "dotenv": "^16.4.7",
+    "mysql": "^2.18.1",
+    "uuid": "^11.0.4"
+  }
+}

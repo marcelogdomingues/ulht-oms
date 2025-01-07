@@ -1,23 +1,30 @@
-- name: Configurar Servidores OMS
+- name: Run Node.js Application
   hosts: all
-  become: true  # Eleva os privilégios para root
+  become: false  # No need for elevated privileges unless specified
+  vars:
+    app_script_path: "/Users/marcelodomingues/Developments/University/Project/ulht-oms/Process/scripts/store-events.js"
+    npm_path: "/Users/marcelodomingues/Developments/University/Project/ulht-oms/Process/scripts"
   tasks:
-    - name: Atualizar os pacotes do sistema
-      apt:
-        update_cache: yes
-        upgrade: dist
-
-    - name: Instalar Node.js
-      apt:
-        name: nodejs
+    - name: Ensure Node.js is installed
+      community.general.npm:
+        name: ""
+        global: yes
         state: present
 
-    - name: Instalar MySQL
-      apt:
-        name: mysql-server
+    - name: Install dependencies for the application
+      npm:
+        path: "{{ npm_path }}"
         state: present
 
-    - name: Criar base de dados 'orders_db'
-      mysql_db:
-        name: orders_db
-        state: present
+    - name: Run the Node.js application asynchronously
+      command: node "{{ app_script_path }}"
+      async: 15  # Allow the task to run for 15 seconds
+      poll: 0    # Run in the background
+      register: async_job  # Capture job details, including 'ansible_job_id'
+
+    - name: Wait for the Node.js application to stop
+      async_status:
+        jid: "{{ async_job.ansible_job_id }}"  # Use the captured job ID
+      register: job_result
+      until: job_result.finished
+      retries: 1  # Only attempt to check once since it should stop after 15 seconds
