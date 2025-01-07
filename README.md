@@ -101,7 +101,7 @@ ULHT-OMS/
    - `http://web3.localhost`
 
 Nota: Deverá adicionar estes hosts ao seu ficheiro \hosts.
-````
+```bash
 sudo nano /etc/hosts
 ```
 
