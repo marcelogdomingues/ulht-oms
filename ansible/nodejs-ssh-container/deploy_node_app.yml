@@ -1,0 +1,23 @@
+- name: Deploy Node.js app to containers
+  hosts: nodejs_containers
+  vars:
+    source_dir: /Users/marcelodomingues/ulht-oms/ansible/nodejs-ssh-container
+    dest_dir: /usr/src/app
+  tasks:
+    - name: Copy app.js to the container
+      copy:
+        src: "{{ source_dir }}/app.js"
+        dest: "{{ dest_dir }}/app.js"
+        remote_src: no
+
+    - name: Copy store-events.js to the container
+      copy:
+        src: "{{ source_dir }}/store-events.js"
+        dest: "{{ dest_dir }}/store-events.js"
+        remote_src: no
+
+    - name: Start the app.js application
+      shell: node "{{ dest_dir }}/app.js" &
+
+    - name: Start the store-events.js application
+      shell: node "{{ dest_dir }}/store-events.js" &

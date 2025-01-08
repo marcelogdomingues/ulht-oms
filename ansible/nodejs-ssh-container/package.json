@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-ssh-container",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@azure/event-hubs": "^5.12.2",
+    "dotenv": "^16.4.7",
+    "mysql": "^2.18.1"
+  }
+}
